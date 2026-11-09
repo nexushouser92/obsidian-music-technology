@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Herramienta .exe que desactiva el modo demo de luces del Numark Mixtrack Pro Platinum FX.">
+<title>Exit Demo Mode — Mixtrack Pro Platinum FX · Obsidian</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+<header class="site-header on-dark" id="top">
+  <a class="logo" href="../index.html#top"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 5 L18 5 L28 15 L28 27 L14 27 L4 17 Z" fill="currentColor"/></svg><span>OBSIDIAN</span></a>
+  <a class="menu-btn" href="../index.html#utilitys">← UTILITYS</a>
+</header>
+
+<main class="detail">
+  <div class="detail__hero">
+    <a class="detail__back" href="../index.html#utilitys">← Todas las utilidades</a>
+    <h1 class="detail__title">Exit Demo Mode — Mixtrack Pro Platinum FX</h1>
+    <p class="detail__ver">RELEASE v1.1.0</p>
+    <p class="detail__desc">Herramienta .exe que desactiva el modo demo de luces del Numark Mixtrack Pro Platinum FX.</p>
+    <div class="detail__actions">
+      <a class="btn btn--download" href="https://github.com/nexushouser92/Exit-Demo-Mode---Mixtrack-Pro-Platinum-FX/releases/download/v1.1.0/Exit.Demo.Mode.-.Numark.Mixtrack.Pro.Platinum.FX.exe" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 11l5 5 5-5"/><path d="M4 21h16"/></svg> Descargar v1.1.0</a>
+      <a class="btn btn--repo" href="https://github.com/nexushouser92/Exit-Demo-Mode---Mixtrack-Pro-Platinum-FX" target="_blank" rel="noopener">Ver repositorio</a>
+    </div>
+    <p class="detail__asset">Archivo: Exit.Demo.Mode.-.Numark.Mixtrack.Pro.Platinum.FX.exe</p>
+  </div>
+  <article class="readme"><h1 id="exit-demo-mode-numark-mixtrack-pro-platinum-fx">Exit Demo Mode - Numark Mixtrack Pro / Platinum FX</h1>
+<p>A lightweight, standalone Windows executable (<code>.exe</code>) that automatically disables the light demo mode on <strong>Numark Mixtrack Pro FX</strong> and <strong>Numark Mixtrack Platinum FX</strong> controllers.</p>
+<p>When these controllers are plugged in via USB without an active DJ software session, they enter an automatic light demo mode. This tool sends native SysEx MIDI commands to exit that mode, leaving your controller ready for custom MIDI mappings, projects, or integration with any software.</p>
+<blockquote>
+<p>[!NOTE]
+This is an unofficial project, not affiliated with or endorsed by Numark or inMusic.</p>
+</blockquote>
+<hr />
+<h2 id="features">Features</h2>
+<ul>
+<li><strong>Automatic Controller Detection</strong>: Scans system MIDI outputs and connects to the first device whose name contains "Mixtrack", without manual port selection. Other MIDI devices are never touched.</li>
+<li><strong>Simple window, no terminal</strong>: One button. If the controller is not plugged in yet, the window detects it as soon as you connect it.</li>
+<li><strong>Native API Integration</strong>: Uses the Windows Multimedia API (<code>winmm.dll</code>) via <code>ctypes</code>, with no extra drivers or libraries.</li>
+<li><strong>English and Spanish</strong>: Messages follow your Windows language.</li>
+</ul>
+<hr />
+<h2 id="requirements">Requirements</h2>
+<ul>
+<li><strong>Operating System</strong>: Windows 10 / 11</li>
+<li><strong>Hardware</strong>: Numark Mixtrack Pro FX or Numark Mixtrack Platinum FX connected via USB.</li>
+</ul>
+<hr />
+<h2 id="how-to-use">How to Use</h2>
+<ol>
+<li>Download <code>Exit Demo Mode - Numark Mixtrack Pro Platinum FX.exe</code> from the <a href="https://github.com/nexushouser92/Exit-Demo-Mode---Mixtrack-Pro-Platinum-FX/blob/main/releases">Releases</a> page.</li>
+<li>Connect your <strong>Numark Mixtrack</strong> controller to your computer via USB.</li>
+<li>Close any DJ software that may be using the controller.</li>
+<li>Run the <code>.exe</code>. The window shows <strong>Controller detected</strong> (if not, plug the controller in and wait a second).</li>
+<li>Click <strong>Exit demo mode</strong>. The window confirms when it is done; then close it.</li>
+</ol>
+<p>The commands only last until the controller is unplugged or powered off, so run the tool again after reconnecting it.</p>
+<p><img alt="Exit Demo Mode window" src="https://raw.githubusercontent.com/nexushouser92/Exit-Demo-Mode---Mixtrack-Pro-Platinum-FX/main/docs/window.png" /></p>
+<h3 id="windows-or-the-antivirus-says-the-app-is-dangerous">Windows or the antivirus says the app is dangerous</h3>
+<p>The <code>.exe</code> is not digitally signed, so Windows SmartScreen shows "Unknown publisher". Click <strong>More info</strong> â†’ <strong>Run anyway</strong>.</p>
+<p>A few antivirus engines flag apps made with PyInstaller as false positives. Every release <code>.exe</code> is built by <a href="https://github.com/nexushouser92/Exit-Demo-Mode---Mixtrack-Pro-Platinum-FX/blob/main/actions">GitHub Actions</a> from the code in this repository, and each release includes a <code>SHA256.txt</code> so you can check your download:</p>
+<pre><code class="language-powershell">Get-FileHash &quot;Exit Demo Mode - Numark Mixtrack Pro Platinum FX.exe&quot; -Algorithm SHA256
+</code></pre>
+<hr />
+<h2 id="technical-details">Technical Details</h2>
+<p>This program sends two System Exclusive (SysEx) MIDI messages directly to the hardware:</p>
+<ul>
+<li><strong>Exit Demo Mode</strong>: <code>F0 7E 00 06 01 F7</code> (Universal Identity Request: the controller leaves demo mode when a host asks for its identity, as DJ software does at startup)</li>
+<li><strong>State Initialization</strong>: <code>F0 00 20 7F 03 01 F7</code></li>
+</ul>
+<p>The tool waits for the Windows MIDI driver to confirm that each message was sent before closing the port.</p>
+<blockquote>
+<p><strong>Note</strong>: This tool does not alter or flash the controller's firmware; it only sends temporary commands to hardware memory until power-cycled.</p>
+</blockquote>
+<hr />
+<h2 id="build-it-yourself">Build it yourself</h2>
+<pre><code class="language-bash">python -m pip install pyinstaller
+python -m PyInstaller --onefile --windowed --name &quot;Exit Demo Mode - Numark Mixtrack Pro Platinum FX&quot; main.py
+</code></pre>
+<p>The result is in <code>dist\</code>.</p>
+<h2 id="development">Development</h2>
+<p>Run the tests (they use a fake <code>winmm</code>, no controller needed):</p>
+<pre><code class="language-bash">python -m unittest discover -s tests -v
+</code></pre>
+<p>To publish a release, go to <strong>Releases â†’ Draft a new release</strong> on GitHub, type a new tag (for example <code>v1.0.1</code>) and publish. The workflow runs the tests, builds the <code>.exe</code> and attaches it to the release with its <code>SHA256.txt</code>.</p>
+<hr />
+<h2 id="repository-credits">Repository &amp; Credits</h2>
+<ul>
+<li><strong>Repository</strong>: <a href="https://github.com/nexushouser92/Exit-Demo-Mode---Mixtrack-Pro-Platinum-FX">https://github.com/nexushouser92/Exit-Demo-Mode---Mixtrack-Pro-Platinum-FX</a></li>
+<li><strong>Developed by</strong>: <a href="https://github.com/nexushouser92">nexushouser92</a></li>
+<li>Released under the <a href="https://github.com/nexushouser92/Exit-Demo-Mode---Mixtrack-Pro-Platinum-FX/blob/main/LICENSE">MIT License</a>.</li>
+</ul></article>
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <div class="footer-logo"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 5 L18 5 L28 15 L28 27 L14 27 L4 17 Z"/></svg></div>
+    <div class="footer-col"><h3>Obsidian</h3><ul><li><a href="../index.html#utilitys">← Utilitys</a></li></ul></div>
+    <div class="footer-col"><h3>About</h3><ul><li><a href="https://github.com/nexushouser92" target="_blank" rel="noopener">GitHub</a></li></ul></div>
+    <div class="footer-meta">OPEN SOURCE · PARA LA COMUNIDAD</div>
+    <div class="footer-handle">github.com/nexushouser92</div>
+  </div>
+</footer>
+</body></html>

@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Editor de mapeos MIDI no oficial para el Numark Orbit (Windows): pads, knobs, acelerómetro y secuenciador de 16 pasos.">
+<title>Numark Orbit Editor · Obsidian</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+<header class="site-header on-dark" id="top">
+  <a class="logo" href="../index.html#top"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 5 L18 5 L28 15 L28 27 L14 27 L4 17 Z" fill="currentColor"/></svg><span>OBSIDIAN</span></a>
+  <a class="menu-btn" href="../index.html#utilitys">← UTILITYS</a>
+</header>
+
+<main class="detail">
+  <div class="detail__hero">
+    <a class="detail__back" href="../index.html#utilitys">← Todas las utilidades</a>
+    <h1 class="detail__title">Numark Orbit Editor</h1>
+    <p class="detail__ver">RELEASE v1.2.0</p>
+    <p class="detail__desc">Editor de mapeos MIDI no oficial para el Numark Orbit (Windows): pads, knobs, acelerómetro y secuenciador de 16 pasos.</p>
+    <div class="detail__actions">
+      <a class="btn btn--download" href="https://github.com/nexushouser92/Numark-Orbit-Editor/releases/download/v1.2.0/Orbit.Editor.exe" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 11l5 5 5-5"/><path d="M4 21h16"/></svg> Descargar v1.2.0</a>
+      <a class="btn btn--repo" href="https://github.com/nexushouser92/Numark-Orbit-Editor" target="_blank" rel="noopener">Ver repositorio</a>
+    </div>
+    <p class="detail__asset">Archivo: Orbit.Editor.exe</p>
+  </div>
+  <article class="readme"><h1 id="orbit-editor-unofficial">Orbit Editor (Unofficial)</h1>
+<p>A Windows editor for the MIDI mapping of the <strong>Numark Orbit</strong> controller, written from scratch. It
+changes the channel, note or CC, mode and color of every pad, plus the knobs and accelerometer of all
+4 banks, and applies each change to the Orbit right away. It also turns the Orbit into a
+<strong>4-track step sequencer</strong>.</p>
+<blockquote>
+<p>[!NOTE]
+This is an unofficial project, not affiliated with or endorsed by Numark or inMusic. It was built
+for interoperability, without copying any code or assets from the original editor.</p>
+</blockquote>
+<p><strong>Mapping</strong>, with scale mode on bank 4:</p>
+<p><img alt="Orbit Editor: mapping page with scale mode" src="https://raw.githubusercontent.com/nexushouser92/Numark-Orbit-Editor/main/docs/screenshot.png" /></p>
+<p><strong>Sequencer</strong>, playing:</p>
+<p><img alt="Orbit Editor: sequencer page" src="https://raw.githubusercontent.com/nexushouser92/Numark-Orbit-Editor/main/docs/screenshot-sequencer.png" /></p>
+<hr />
+<h2 id="features">Features</h2>
+<ul>
+<li><strong>Automatic linking</strong>: finds the Orbit as soon as it is plugged in, by cable or through its wireless
+  receiver. No port to choose.</li>
+<li><strong>Live preview</strong>: every change is stored in the Orbit half a second after your last edit, and the app
+  reads it back to check that it was stored correctly.</li>
+<li><strong>Follows the Orbit</strong>: press a pad on the Orbit and it lights up on screen, selected for editing. The
+  app also follows the bank, the K buttons and the accelerometer.</li>
+<li><strong>Pads</strong>: channel, note, momentary/toggle mode and color, with a color wheel, <strong>3 brightness levels</strong>,
+  a 0–3 red·green·blue mix (64 colors) and 12 quick colors.</li>
+<li><strong>Knobs K1–K4</strong>: channel, CC and absolute/relative mode.</li>
+<li><strong>Accelerometer</strong>: channel and CC of each axis (left-right and up-down).</li>
+<li><strong>Scale mode</strong>: 14 scales (major, modes, minors, blues, pentatonics, triads) with root and octave.
+  The 16 pads can be chromatic (scale notes lit) or scale notes only. Each bank has its own scale and
+  lights up in its own colors.</li>
+<li><strong>Helpers</strong>: consecutive notes, same channel, color or mode on the whole bank, and bank copy.</li>
+<li><strong>Presets</strong>: save and open <code>.json</code> (scales included) or <code>.syx</code> (the Orbit's own SysEx dump).</li>
+<li><strong>English and Spanish</strong>, following your Windows language.</li>
+</ul>
+<h3 id="sequencer">Sequencer</h3>
+<p>Inspired by the sequencer of the nanoKONTROL 2 editor: <strong>4 tracks × 16 steps</strong>, where each bank of the
+Orbit is a track and each pad a step. The pads light up live with the pattern: each track in its
+color, brighter for louder steps, and the playhead moving across them.</p>
+<table>
+<thead>
+<tr>
+<th>On the Orbit</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pad (press and release)</td>
+<td>Turns that step on or off</td>
+</tr>
+<tr>
+<td>Bank buttons 1–4</td>
+<td>Choose the track</td>
+</tr>
+<tr>
+<td>Hold a pad + turn the wheel</td>
+<td>Velocity of that step</td>
+</tr>
+<tr>
+<td>Wheel</td>
+<td><strong>Tempo</strong> with the internal clock; when a DAW sends the clock (and so sets the tempo), the <strong>velocity</strong> of the track</td>
+</tr>
+<tr>
+<td>K1–K4</td>
+<td>Solo of track 1–4 on or off; both the solos and the K LEDs start off (LED lit = solo)</td>
+</tr>
+<tr>
+<td>Right shoulder + tilt forward/back</td>
+<td><strong>Beat repeat</strong>: repeats the current step, faster the more you tilt (1/16, 1/32, 1/48)</td>
+</tr>
+<tr>
+<td>Left shoulder + tilt left/right</td>
+<td><strong>Filter</strong>: sends a CC (74, cutoff, by default; set it in the window) on the selected track's channel, to map in a DAW or synth</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>[!NOTE]
+The Orbit only reports a K button when you switch to a different K: pressing the same K twice toggles
+its LED but sends nothing the second time. To take a solo off, go through another K, or use the
+<strong>S</strong> buttons in the window (they also bring the LEDs and the solos back in step).</p>
+</blockquote>
+<p>In the window: the note and MIDI channel of each track (drums on channel 10 by default), solo, clear,
+swing (50–75 %, on 16ths or 8ths), tempo, and Play / Stop. Click a step to turn it on or off, and use
+the mouse wheel over it to change its velocity.</p>
+<ul>
+<li><strong>Internal clock</strong>: plays on its own through any MIDI output, e.g. a USB synth or the
+  <em>Microsoft GS Wavetable Synth</em> built into Windows.</li>
+<li><strong>DAW clock</strong>: follows your DAW's MIDI clock, Play, Stop and song position through a
+  <a href="https://www.tobias-erichsen.de/software/loopmidi.html">loopMIDI</a> port (free; the app links to it).</li>
+</ul>
+<p>While the sequencer runs, the Orbit holds a sequencer mapping; your own mapping comes back as soon as
+you stop it or close the app (and on the next start, if the app was closed unexpectedly).</p>
+<h2 id="requirements">Requirements</h2>
+<ul>
+<li>Windows 10 / 11</li>
+<li>A Numark Orbit connected by mini-USB cable or through its USB wireless receiver.</li>
+<li>For the sequencer with a DAW only: <a href="https://www.tobias-erichsen.de/software/loopmidi.html">loopMIDI</a>.</li>
+</ul>
+<h2 id="how-to-use">How to use</h2>
+<ol>
+<li>Download <code>Orbit.Editor.exe</code> from the <a href="https://github.com/nexushouser92/Numark-Orbit-Editor/blob/main/releases">Releases</a> page.</li>
+<li>Close your DJ software: while the editor is open, the Orbit stays linked to it, and Windows does not
+   let another program use it at the same time.</li>
+<li>Run the <code>.exe</code>. The status button turns to <strong>Orbit linked</strong> and the Orbit's current mapping is loaded.</li>
+<li>Click a pad (or press it on the Orbit) and change anything. The Orbit updates by itself.</li>
+<li>Use <strong>Factory</strong> to go back to the factory mapping, and <strong>Save…</strong> to keep your mapping in a file.</li>
+</ol>
+<h3 id="windows-or-the-antivirus-says-the-app-is-dangerous">Windows or the antivirus says the app is dangerous</h3>
+<p>The <code>.exe</code> is not digitally signed, so Windows SmartScreen shows "Unknown publisher". Click
+<strong>More info</strong> → <strong>Run anyway</strong>.</p>
+<p>A few antivirus engines flag apps made with PyInstaller as false positives. Every release <code>.exe</code> is
+built by <a href="https://github.com/nexushouser92/Numark-Orbit-Editor/blob/main/actions">GitHub Actions</a> from the code in this repository, and each release includes a
+<code>SHA256.txt</code> so you can check your download:</p>
+<pre><code class="language-powershell">Get-FileHash &quot;Orbit.Editor.exe&quot; -Algorithm SHA256
+</code></pre>
+<h2 id="orbit-limitations">Orbit limitations</h2>
+<ul>
+<li>The accelerometer, wheel and K button LEDs have fixed colors in the firmware. Only pads can be colored.</li>
+<li>The active bank and K can only be changed on the Orbit itself; the firmware ignores such requests
+  from the PC. The app follows the bank and K you choose on the Orbit.</li>
+<li>The Orbit has no Bluetooth: its wireless link is a 2.4 GHz radio that only works with its USB
+  receiver. See <a href="https://github.com/nexushouser92/Numark-Orbit-Editor/blob/main/research/WIRELESS.md">research/WIRELESS.md</a>.</li>
+</ul>
+<hr />
+<h2 id="technical-documentation">Technical documentation</h2>
+<ul>
+<li><a href="https://github.com/nexushouser92/Numark-Orbit-Editor/blob/main/research/PROTOCOL.md">research/PROTOCOL.md</a>: the Orbit's SysEx protocol (read, write and the
+  240-byte layout), with everything confirmed on a real Orbit.</li>
+<li><a href="https://github.com/nexushouser92/Numark-Orbit-Editor/blob/main/research/ARCHITECTURE.md">research/ARCHITECTURE.md</a>: code structure, safety rules and history.</li>
+<li><a href="https://github.com/nexushouser92/Numark-Orbit-Editor/blob/main/research/WIRELESS.md">research/WIRELESS.md</a>: wireless connection options.</li>
+</ul>
+<h2 id="license">License</h2>
+<p>MIT — see <a href="https://github.com/nexushouser92/Numark-Orbit-Editor/blob/main/LICENSE">LICENSE</a>.</p></article>
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <div class="footer-logo"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 5 L18 5 L28 15 L28 27 L14 27 L4 17 Z"/></svg></div>
+    <div class="footer-col"><h3>Obsidian</h3><ul><li><a href="../index.html#utilitys">← Utilitys</a></li></ul></div>
+    <div class="footer-col"><h3>About</h3><ul><li><a href="https://github.com/nexushouser92" target="_blank" rel="noopener">GitHub</a></li></ul></div>
+    <div class="footer-meta">OPEN SOURCE · PARA LA COMUNIDAD</div>
+    <div class="footer-handle">github.com/nexushouser92</div>
+  </div>
+</footer>
+</body></html>

@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Herramienta no oficial para el Behringer Neutron (Windows): editor de ajustes, afinador, backup/instalación de firmware y guía r15f.">
+<title>Neutron Manager · Obsidian</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+<header class="site-header on-dark" id="top">
+  <a class="logo" href="../index.html#top"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 5 L18 5 L28 15 L28 27 L14 27 L4 17 Z" fill="currentColor"/></svg><span>OBSIDIAN</span></a>
+  <a class="menu-btn" href="../index.html#utilitys">← UTILITYS</a>
+</header>
+
+<main class="detail">
+  <div class="detail__hero">
+    <a class="detail__back" href="../index.html#utilitys">← Todas las utilidades</a>
+    <h1 class="detail__title">Neutron Manager</h1>
+    <p class="detail__ver">RELEASE v1.0.0</p>
+    <p class="detail__desc">Herramienta no oficial para el Behringer Neutron (Windows): editor de ajustes, afinador, backup/instalación de firmware y guía r15f.</p>
+    <div class="detail__actions">
+      <a class="btn btn--download" href="https://github.com/nexushouser92/neutron-manager/releases/download/v1.0.0/Neutron.Manager.exe" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 11l5 5 5-5"/><path d="M4 21h16"/></svg> Descargar v1.0.0</a>
+      <a class="btn btn--repo" href="https://github.com/nexushouser92/neutron-manager" target="_blank" rel="noopener">Ver repositorio</a>
+    </div>
+    <p class="detail__asset">Archivo: Neutron.Manager.exe</p>
+  </div>
+  <article class="readme"><h1 id="neutron-manager-unofficial">Neutron Manager (unofficial)</h1>
+<p>A Windows tool for the <strong>Behringer Neutron</strong>: global settings editor, live tuner, safe firmware backup and
+install (including the alternative firmware <strong>r15f</strong> by mrf-r), and a reference of r15f's panel combinations.</p>
+<blockquote>
+<p>[!NOTE]
+This is an unofficial project, not affiliated with or endorsed by Behringer or Music Tribe.
+The settings protocol was documented in clean-room fashion (see <a href="https://github.com/nexushouser92/neutron-manager/blob/main/SPEC.md">SPEC.md</a>): no code or assets
+from the official editor are included.</p>
+</blockquote>
+<p><img alt="Neutron Manager window" src="https://raw.githubusercontent.com/nexushouser92/neutron-manager/main/docs/screenshot.png" /></p>
+<h2 id="download">Download</h2>
+<p>Get <strong>Neutron Manager.exe</strong> from the <a href="https://github.com/nexushouser92/neutron-manager/releases/latest">latest release</a>
+(Windows 10/11, no installation needed). Its SHA-256 is published next to it as <code>SHA256.txt</code>.</p>
+<h2 id="features">Features</h2>
+<ul>
+<li><strong>Automatic linking</strong> over USB-MIDI: the Neutron is found as soon as it is plugged in.</li>
+<li><strong>All 37 global settings</strong> of the factory firmware (2.0.2 or later), grouped as Oscillators, LFO, Filter,
+  MIDI and Keyboard. Each change is applied a moment after your last edit and <strong>read back to verify it</strong>.
+  Changes made on the Neutron's own panel show up in the window.</li>
+<li><strong>Live tuner</strong> for both oscillators, from the readings the Neutron streams by itself.</li>
+<li><strong>Firmware tab</strong> through the chip's ROM bootloader (DFU):</li>
+<li>full 128 KB backup first, always;</li>
+<li>erases <strong>only the pages the new firmware uses</strong>, never the whole chip (so data stored elsewhere,
+    such as calibration, is not wiped by the install itself);</li>
+<li>every write is read back and compared;</li>
+<li>refuses anything that is not an STM32F072 with the Neutron's flash layout.</li>
+<li><strong>r15f guide</strong>: every button combination of the alternative firmware, since r15f has no USB or SysEx.</li>
+<li>Save and open settings as JSON. Spanish and English, from the Windows language.</li>
+</ul>
+<p><img alt="Tuner" src="https://raw.githubusercontent.com/nexushouser92/neutron-manager/main/docs/tuner.png" /></p>
+<h2 id="documents">Documents</h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>What it contains</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/nexushouser92/neutron-manager/blob/main/SPEC.md">SPEC.md</a></td>
+<td>The SysEx protocol, verified against a real Neutron 2.0.2</td>
+</tr>
+<tr>
+<td><a href="https://github.com/nexushouser92/neutron-manager/blob/main/HARDWARE.md">HARDWARE.md</a></td>
+<td>What the Neutron's hardware can and cannot do</td>
+</tr>
+<tr>
+<td><a href="https://github.com/nexushouser92/neutron-manager/blob/main/FIRMWARE_ANALYSIS.md">FIRMWARE_ANALYSIS.md</a></td>
+<td>Where r15f spends its CPU (947 of 1000 cycles) and how to measure and reduce it</td>
+</tr>
+</tbody>
+</table>
+<h2 id="run-from-source">Run from source</h2>
+<pre><code>python -m pip install -r requirements.txt
+python main.py
+</code></pre>
+<p>Tests (no Neutron needed: they use a simulated Neutron and a simulated bootloader):</p>
+<pre><code>python -m unittest discover -s tests -t . -v
+</code></pre>
+<h2 id="credits">Credits</h2>
+<p>Alternative firmware r15f and its manual: Evgeny "mrf" Chernykh, GPL-3, <a href="https://github.com/mrf-r/Neutron">https://github.com/mrf-r/Neutron</a>.
+Firmware files are not distributed in this repository.</p>
+<p>MIT License.</p></article>
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <div class="footer-logo"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 5 L18 5 L28 15 L28 27 L14 27 L4 17 Z"/></svg></div>
+    <div class="footer-col"><h3>Obsidian</h3><ul><li><a href="../index.html#utilitys">← Utilitys</a></li></ul></div>
+    <div class="footer-col"><h3>About</h3><ul><li><a href="https://github.com/nexushouser92" target="_blank" rel="noopener">GitHub</a></li></ul></div>
+    <div class="footer-meta">OPEN SOURCE · PARA LA COMUNIDAD</div>
+    <div class="footer-handle">github.com/nexushouser92</div>
+  </div>
+</footer>
+</body></html>

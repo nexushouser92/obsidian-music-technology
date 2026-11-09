@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Script autónomo para Linux que desactiva el modo demo de luces del Numark Mixtrack Pro/Platinum FX.">
+<title>Exit Demo Mode · Linux — Mixtrack Pro Platinum FX · Obsidian</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+<header class="site-header on-dark" id="top">
+  <a class="logo" href="../index.html#top"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 5 L18 5 L28 15 L28 27 L14 27 L4 17 Z" fill="currentColor"/></svg><span>OBSIDIAN</span></a>
+  <a class="menu-btn" href="../index.html#utilitys">← UTILITYS</a>
+</header>
+
+<main class="detail">
+  <div class="detail__hero">
+    <a class="detail__back" href="../index.html#utilitys">← Todas las utilidades</a>
+    <h1 class="detail__title">Exit Demo Mode · Linux — Mixtrack Pro Platinum FX</h1>
+    <p class="detail__ver">RELEASE v1.1.0</p>
+    <p class="detail__desc">Script autónomo para Linux que desactiva el modo demo de luces del Numark Mixtrack Pro/Platinum FX.</p>
+    <div class="detail__actions">
+      <a class="btn btn--download" href="https://github.com/nexushouser92/Exit-Demo-Linux-Mode--Mixtrack-Pro-Platinum-FX-/releases/download/v1.1.0/exit-demo-mode-linux-x86_64.tar.gz" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 11l5 5 5-5"/><path d="M4 21h16"/></svg> Descargar v1.1.0</a>
+      <a class="btn btn--repo" href="https://github.com/nexushouser92/Exit-Demo-Linux-Mode--Mixtrack-Pro-Platinum-FX-" target="_blank" rel="noopener">Ver repositorio</a>
+    </div>
+    <p class="detail__asset">Archivo: exit-demo-mode-linux-x86_64.tar.gz</p>
+  </div>
+  <article class="readme"><h1 id="exit-demo-mode-numark-mixtrack-pro-platinum-fx-linux">Exit Demo Mode - Numark Mixtrack Pro / Platinum FX (Linux)</h1>
+<p>A small Linux app that automatically disables the light demo mode on <strong>Numark Mixtrack Pro FX</strong> and <strong>Numark Mixtrack Platinum FX</strong> controllers.</p>
+<p>When these controllers are plugged in via USB without an active DJ software session, they enter an automatic light demo mode. This tool sends native SysEx MIDI commands to exit that mode, leaving your controller ready for custom MIDI mappings, projects, or integration with any software (Mixxx, VirtualDJ, Bitwig, Ardour...).</p>
+<blockquote>
+<p>[!NOTE]
+This is an unofficial project, not affiliated with or endorsed by Numark or inMusic. It does not flash or change the controller's firmware.</p>
+</blockquote>
+<p>Looking for Windows? See <a href="https://github.com/nexushouser92/Exit-Demo-Mode---Mixtrack-Pro-Platinum-FX">Exit Demo Mode for Windows</a>.</p>
+<hr />
+<h2 id="features">Features</h2>
+<ul>
+<li><strong>Simple window, no terminal needed</strong>: One button. If the controller is not plugged in yet, the window detects it as soon as you connect it.</li>
+<li><strong>Safe detection</strong>: Only MIDI devices whose name contains "Mixtrack" are used; other devices are never touched.</li>
+<li><strong>English and Spanish</strong>: Messages follow your system language.</li>
+</ul>
+<hr />
+<h2 id="option-1-ready-to-run-app-recommended">Option 1: Ready-to-run app (recommended)</h2>
+<p>No Python or extra packages needed. Works on 64-bit (x86_64) distributions such as Ubuntu, Linux Mint, Debian, Fedora or Arch.</p>
+<ol>
+<li>Download <code>exit-demo-mode-linux-x86_64.tar.gz</code> from the <a href="https://github.com/nexushouser92/Exit-Demo-Linux-Mode--Mixtrack-Pro-Platinum-FX-/blob/main/releases">Releases</a> page.</li>
+<li>Extract it (right click → <strong>Extract Here</strong>, or <code>tar -xzf exit-demo-mode-linux-x86_64.tar.gz</code>).</li>
+<li>Connect your Mixtrack via USB and close any DJ software.</li>
+<li>Run <code>exit-demo-mode</code> (double click, or <code>./exit-demo-mode</code> in a terminal).</li>
+<li>When the window shows <strong>Controller detected</strong>, click <strong>Exit demo mode</strong>.</li>
+</ol>
+<h2 id="option-2-run-the-python-script">Option 2: Run the Python script</h2>
+<p>On Ubuntu, Linux Mint or any Debian-based distribution:</p>
+<pre><code class="language-bash">sudo apt update
+sudo apt install -y python3-mido python3-rtmidi python3-tk
+</code></pre>
+<p>Then download <code>main.py</code> from the <a href="https://github.com/nexushouser92/Exit-Demo-Linux-Mode--Mixtrack-Pro-Platinum-FX-/blob/main/releases">Releases</a> page (or clone this repository) and run it from the same folder:</p>
+<pre><code class="language-bash">python3 main.py
+</code></pre>
+<p>On other distributions, install Tkinter from your package manager and the MIDI libraries with <code>pip install mido python-rtmidi</code>.</p>
+<hr />
+<p>The commands only last until the controller is unplugged or powered off, so run the tool again after reconnecting it.</p>
+<h3 id="what-if-dj-software-like-mixxx-or-virtualdj-is-open">What if DJ software (like Mixxx or VirtualDJ) is open?</h3>
+<p>Close it before running this tool: DJ software can lock the controller's MIDI port, and the window will tell you it could not open the port.</p>
+<h3 id="verify-your-download">Verify your download</h3>
+<p>Every release is built by <a href="https://github.com/nexushouser92/Exit-Demo-Linux-Mode--Mixtrack-Pro-Platinum-FX-/blob/main/actions">GitHub Actions</a> from the code in this repository, and each release includes a <code>SHA256.txt</code>:</p>
+<pre><code class="language-bash">sha256sum -c SHA256.txt --ignore-missing
+</code></pre>
+<hr />
+<h2 id="technical-details">Technical Details</h2>
+<p>This program sends two System Exclusive (SysEx) MIDI messages to the controller:</p>
+<ul>
+<li><strong>Exit Demo Mode</strong>: <code>F0 7E 00 06 01 F7</code> (Universal Identity Request: the controller leaves demo mode when a host asks for its identity, as DJ software does at startup)</li>
+<li><strong>State Initialization</strong>: <code>F0 00 20 7F 03 01 F7</code></li>
+</ul>
+<h2 id="development">Development</h2>
+<pre><code class="language-bash">python3 -m pip install mido python-rtmidi
+python3 -m unittest discover -s tests -v
+</code></pre>
+<p>The tests use a fake MIDI backend, so no controller is needed. To publish a release, go to <strong>Releases → Draft a new release</strong> on GitHub, type a new tag (for example <code>v1.1.0</code>) and publish; the workflow builds the Linux app and attaches it with <code>main.py</code> and <code>SHA256.txt</code>.</p>
+<hr />
+<p>Developed by <a href="https://github.com/nexushouser92">nexushouser92</a>. Released under the <a href="https://github.com/nexushouser92/Exit-Demo-Linux-Mode--Mixtrack-Pro-Platinum-FX-/blob/main/LICENSE">MIT License</a>.</p></article>
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <div class="footer-logo"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 5 L18 5 L28 15 L28 27 L14 27 L4 17 Z"/></svg></div>
+    <div class="footer-col"><h3>Obsidian</h3><ul><li><a href="../index.html#utilitys">← Utilitys</a></li></ul></div>
+    <div class="footer-col"><h3>About</h3><ul><li><a href="https://github.com/nexushouser92" target="_blank" rel="noopener">GitHub</a></li></ul></div>
+    <div class="footer-meta">OPEN SOURCE · PARA LA COMUNIDAD</div>
+    <div class="footer-handle">github.com/nexushouser92</div>
+  </div>
+</footer>
+</body></html>
