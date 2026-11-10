@@ -82,10 +82,21 @@ const homeUrl = `${base}/`;
     const fresh = btn.cloneNode(true) as HTMLButtonElement;
     btn.replaceWith(fresh);
 
+    function close() {
+      fresh.setAttribute('aria-expanded', 'false');
+      nav!.classList.remove('is-open');
+    }
+
     fresh.addEventListener('click', () => {
       const open = fresh.getAttribute('aria-expanded') === 'true';
       fresh.setAttribute('aria-expanded', String(!open));
-      nav.classList.toggle('is-open', !open);
+      nav!.classList.toggle('is-open', !open);
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!fresh.contains(e.target as Node) && !nav!.contains(e.target as Node)) {
+        close();
+      }
     });
   });
 </script>

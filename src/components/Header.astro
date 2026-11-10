@@ -30,10 +30,21 @@ const logo = `${import.meta.env.BASE_URL.replace(/\/?$/, '/')}logo.png`;
     const fresh = button.cloneNode(true) as HTMLButtonElement;
     button.replaceWith(fresh);
 
+    function close() {
+      fresh.setAttribute('aria-expanded', 'false');
+      navigation!.classList.remove('is-open');
+    }
+
     fresh.addEventListener('click', () => {
       const open = fresh.getAttribute('aria-expanded') === 'true';
       fresh.setAttribute('aria-expanded', String(!open));
-      navigation.classList.toggle('is-open', !open);
+      navigation!.classList.toggle('is-open', !open);
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!fresh.contains(e.target as Node) && !navigation!.contains(e.target as Node)) {
+        close();
+      }
     });
   });
 </script>
