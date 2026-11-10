@@ -1,14 +1,13 @@
 export const posts = [
   {
     slug: 'postmarketos-echo-show8-progreso',
-    title: 'postmarketOS en el Echo Show 8: estado del proyecto',
+    title: 'postmarketOS en el Echo Show 8',
     category: 'LINUX / EMBEDDED',
     date: '2026-10-28',
     dateFormatted: '28 Oct 2026',
     heroImage: '/blog/echo-show8.webp',
     heroImageAlt: 'Amazon Echo Show 8 ejecutando postmarketOS',
-    excerpt:
-      'Avances del port de postmarketOS al Amazon Echo Show 8 (2nd Gen): modo monitor WiFi, acceso serial USB y lo que queda por resolver.',
+    excerpt: 'Port de postmarketOS al Amazon Echo Show 8 (2nd Gen): hardware compatible, WiFi monitor mode, acceso USB serial y capturas reales del dispositivo.',
     content: `
 <p>El Amazon Echo Show 8 de segunda generación es un dispositivo con potencial para reutilizar como pantalla Linux embebida. Este post recopila el estado actual del proyecto y los próximos pasos.</p>
 
