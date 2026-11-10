@@ -1,0 +1,302 @@
+---
+import Base from '../../layouts/Base.astro';
+import Footer from '../../components/Footer.astro';
+import { posts } from '../../data/posts.js';
+
+export function getStaticPaths() {
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '');
+const logoUrl = `${base}/logo.png`;
+const homeUrl = `${base}/`;
+---
+
+<Base title={`${post.title} — OBSIDIAN`} description={post.excerpt}>
+  <header class="tool-site-header">
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a href={`${homeUrl}#tools`}>Tools</a>
+      <a href={`${homeUrl}#blog`}>Blog</a>
+      <a href={`${homeUrl}#about`}>About</a>
+      <a class="nav-github" href="https://github.com/nexushouser92" target="_blank" rel="noreferrer">GitHub ↗</a>
+    </nav>
+  </header>
+
+  <main class="post-page">
+    <!-- Post Hero -->
+    <section class={`post-hero${post.heroImage ? ' post-hero--has-image' : ''}`}>
+      <div class="post-hero__inner">
+        <div class="post-meta">
+          <span class="post-category">{post.category}</span>
+          <time class="post-date" datetime={post.date}>{post.dateFormatted}</time>
+        </div>
+        <h1 class="post-title">{post.title}</h1>
+        <p class="post-excerpt">{post.excerpt}</p>
+      </div>
+      {post.heroImage && (
+        <div class={`post-hero__image${post.heroImageBlend ? ' blend-multiply' : ''}`}>
+          <img
+            src={post.heroImage}
+            alt={post.heroImageAlt ?? post.title}
+          />
+        </div>
+      )}
+    </section>
+
+    <!-- Post Content -->
+    <article class="post-content-wrap">
+      <div class="post-content" set:html={post.content} />
+      <aside class="post-sidebar">
+        <p class="eyebrow">Categoría</p>
+        <p class="sidebar-value">{post.category}</p>
+        <p class="eyebrow">Publicado</p>
+        <p class="sidebar-value">{post.dateFormatted}</p>
+        <p class="eyebrow">Colección</p>
+        <p class="sidebar-value">Obsidian Blog</p>
+        <a class="sidebar-btn" href={`${homeUrl}#blog`}>← Volver al blog</a>
+      </aside>
+    </article>
+  </main>
+
+  <Footer />
+</Base>
+
+<style>
+  .tool-site-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.1rem clamp(1.25rem, 4vw, 4rem);
+    background: #14131c;
+    border-bottom: 1px solid rgba(242, 240, 248, 0.1);
+  }
+
+  /* Hero */
+  .post-hero {
+    display: grid;
+    grid-template-columns: 1fr;
+    background: #3a1c71;
+    color: #fff;
+    padding: clamp(5rem, 10vw, 10rem) clamp(1.25rem, 6vw, 7rem) clamp(4rem, 8vw, 8rem);
+    border-bottom: 4px solid #b3dd51;
+  }
+
+  .post-hero--has-image {
+    grid-template-columns: 1fr 42%;
+    padding-right: clamp(1.25rem, 4vw, 4rem);
+    gap: clamp(1.5rem, 4vw, 3rem);
+    align-items: center;
+  }
+
+  .post-hero__inner {
+    max-width: 70ch;
+  }
+
+  .post-hero--has-image .post-hero__inner {
+    padding-right: clamp(1.25rem, 4vw, 4rem);
+  }
+
+  .post-hero__image {
+    display: flex;
+    align-items: center;
+    transform: translateX(-30%);
+  }
+
+  .post-hero__image img {
+    width: 100%;
+    height: auto;
+    max-height: 352px;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+  }
+
+  .post-hero__image.blend-multiply {
+    mix-blend-mode: multiply;
+  }
+
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .post-category {
+    display: inline-block;
+    padding: 0.3rem 0.75rem;
+    background: #b3dd51;
+    color: #000;
+    font: 700 0.65rem / 1 'Space Mono', monospace;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: 2px;
+  }
+
+  .post-date {
+    font: 400 0.72rem / 1 'Space Mono', monospace;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 0.04em;
+  }
+
+  .post-title {
+    margin: 0 0 1.25rem;
+    font-family: 'Bayon', sans-serif;
+    font-size: clamp(2.4rem, 5vw, 5.5rem);
+    font-weight: 400;
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+  }
+
+  .post-excerpt {
+    margin: 0;
+    font-size: clamp(1rem, 1.3vw, 1.2rem);
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.72);
+    max-width: 54ch;
+  }
+
+  /* Content */
+  .post-content-wrap {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 0;
+    min-height: 50vh;
+    background: #d7c4ac;
+    color: #14131c;
+  }
+
+  .post-content {
+    padding: clamp(3rem, 7vw, 6rem) clamp(1.25rem, 6vw, 7rem);
+    border-right: 1px solid rgba(20, 19, 28, 0.15);
+    font-size: clamp(1rem, 1.2vw, 1.1rem);
+    line-height: 1.7;
+    color: #222;
+  }
+
+  .post-content :global(.post-img-right) {
+    float: right;
+    width: clamp(220px, 42%, 420px);
+    margin: 0 0 1.5rem 2rem;
+    border-radius: 4px;
+    display: block;
+    object-fit: cover;
+  }
+
+  .post-content :global(h2) {
+    margin: 2.5rem 0 1rem;
+    font-size: clamp(1.3rem, 2vw, 1.8rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    color: #14131c;
+  }
+
+  .post-content :global(p) {
+    margin: 0 0 1.25rem;
+  }
+
+  .post-content :global(ul),
+  .post-content :global(ol) {
+    margin: 0 0 1.25rem;
+    padding-left: 1.5rem;
+  }
+
+  .post-content :global(li) {
+    margin-bottom: 0.4rem;
+    line-height: 1.6;
+  }
+
+  .post-content :global(code) {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.85em;
+    background: rgba(20, 19, 28, 0.08);
+    padding: 0.1em 0.4em;
+    border-radius: 3px;
+  }
+
+  /* Sidebar */
+  .post-sidebar {
+    padding: clamp(3rem, 7vw, 6rem) 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    background: #d7c4ac;
+  }
+
+  .post-sidebar .eyebrow {
+    margin-top: 1.75rem;
+    color: #55516a;
+  }
+
+  .post-sidebar .eyebrow:first-child {
+    margin-top: 0;
+  }
+
+  .sidebar-value {
+    margin: 0.3rem 0 0;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #14131c;
+    line-height: 1.3;
+  }
+
+  .sidebar-btn {
+    display: inline-block;
+    margin-top: 2.5rem;
+    color: #3a1c71;
+    font: 700 0.72rem / 1 'Space Mono', monospace;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    text-transform: uppercase;
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 2px;
+  }
+
+  .sidebar-btn:hover {
+    color: #000;
+  }
+
+  @media (max-width: 768px) {
+    .post-hero--has-image {
+      grid-template-columns: 1fr;
+    }
+
+    .post-hero__image {
+      min-height: 240px;
+    }
+
+    .post-hero--has-image .post-hero__inner {
+      padding-right: 0;
+    }
+
+    .post-content-wrap {
+      grid-template-columns: 1fr;
+    }
+
+    .post-sidebar {
+      border-top: 1px solid rgba(20, 19, 28, 0.15);
+      padding: 2rem 1.25rem;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .post-sidebar .eyebrow,
+    .sidebar-value {
+      margin: 0;
+    }
+
+    .sidebar-btn {
+      width: 100%;
+      margin-top: 0.5rem;
+    }
+  }
+</style>

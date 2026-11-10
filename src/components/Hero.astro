@@ -1,22 +1,178 @@
 ---
-const status = ['MIDI CONTROL', 'SYNTH UTILITIES', 'DJ HARDWARE', 'OPEN SOURCE', 'MADE FOR MUSIC'];
-const binaryLines = ['01001111  01000010  01010011', '01001001  01000100  01001001', '01000001  01001110  00101110'];
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '');
+
+const hardwareImages = [
+  { src: `${base}/hardware/kontrol_image2_0bf85823-5c95-4495-8aa7-f25bb4ecb86f.webp`, alt: 'Native Instruments Maschine MK2' },
+  { src: `${base}/hardware/Numark_MixtrackPlatinumFX_angle_web-624x390.jpg`, alt: 'Numark Mixtrack Platinum FX' },
+  { src: `${base}/hardware/Ortho_Detail1_WebLG-624x390.jpg`, alt: 'Numark Orbit' },
+  { src: `${base}/hardware/behringer-neutron.webp`, alt: 'Behringer Neutron' },
+  { src: `${base}/hardware/511IfxdVMVL.jpg`, alt: 'MIDI Controller' },
+  { src: `${base}/hardware/2.jpg`, alt: 'Hardware' },
+];
+
+const statusItems = [
+  {
+    label: 'Numark Orbit Editor',
+    repo: 'Numark-Orbit-Editor',
+    href: `${base}/tools/numark-orbit-editor`,
+    linkText: 'Ver proyecto',
+  },
+  {
+    label: 'Obsidian MK2 Connect',
+    repo: 'Obsidian-MK2-Connect',
+    href: `${base}/tools/obsidian-mk2-connect`,
+    linkText: 'Ver proyecto',
+  },
+  {
+    label: 'Mixtrack Pro Platinum FX',
+    repo: 'Exit-Demo-Mode---Mixtrack-Pro-Platinum-FX',
+    href: `${base}/tools/mixtrack-pro-platinum-fx`,
+    linkText: 'Ver proyecto',
+  },
+  {
+    label: 'nanoKONTROL2 MIDI Editor',
+    repo: 'nanokontrol2-midi-editor',
+    href: `${base}/tools/nanokontrol2-midi-editor`,
+    linkText: 'Ver proyecto',
+  },
+  {
+    label: 'Neutron Manager',
+    repo: 'neutron-manager',
+    href: `${base}/blog/maschine-mk2-sin-native-access`,
+    linkText: 'Leer artículo',
+  },
+];
 ---
 
 <section class="hero" id="top" aria-labelledby="hero-title">
   <div class="hero__main">
-    <p class="eyebrow">MUSIC TECHNOLOGY / INDEPENDENT UTILITIES</p>
-    <h1 class="hero__title" id="hero-title">OBSIDIAN<br /><span>MUSIC TECHNOLOGY</span></h1>
-    <p class="hero__lead">Focused utilities for the instruments you already make music with.</p>
-    <a class="hero__link" href="#tools">Explore the tools <span aria-hidden="true">↓</span></a>
+    <h1 class="hero__title" id="hero-title">OBSIDIAN<br /><span>TECHNOLOGY</span></h1>
+    <p class="hero__lead">Unlock your hardware's full potential.</p>
   </div>
   <aside class="hero__side">
-    <div class="hero__side-top"><p>Editors, connection tools and practical experiments for MIDI controllers, synthesizers and DJ gear.</p></div>
+    <div class="hero__side-top">
+      <div class="hw-carousel" aria-label="Hardware gallery">
+        {hardwareImages.map((img, i) => (
+          <img
+            class="hw-carousel__slide"
+            src={img.src}
+            alt={img.alt}
+            aria-hidden={i !== 0}
+            data-index={i}
+            loading={i === 0 ? 'eager' : 'lazy'}
+          />
+        ))}
+      </div>
+    </div>
     <div class="hero__side-bottom">
-      <h2>System Status</h2>
-      <ol class="status-list">{status.map((item, i) => <li>{String(i + 1).padStart(2, '0')}. {item}</li>)}</ol>
-      <pre class="binary">{binaryLines.join('\n')}</pre>
+      <h2>Active and Updated Repositories</h2>
+      <ol class="status-list">
+        {statusItems.map((item, i) => (
+          <li class="status-item" data-repo={item.repo} data-label={item.label} data-href={item.href} data-link-text={item.linkText}>
+            <span class="status-dot" aria-hidden="true"></span>
+            <div class="status-content">
+              <div class="status-row">
+                <span class="status-label">{String(i + 1).padStart(2, '0')}. {item.label}</span>
+                <a class="status-link" href={item.href}>{item.linkText} →</a>
+              </div>
+              <span class="status-time">Verificando...</span>
+            </div>
+          </li>
+        ))}
+      </ol>
     </div>
   </aside>
 </section>
 
+<script>
+  // Hardware carousel — transitions every 60 s
+  (function initCarousel() {
+    const slides = document.querySelectorAll<HTMLImageElement>('.hw-carousel__slide');
+    if (slides.length < 2) return;
+    let current = 0;
+
+    function advance() {
+      slides[current].classList.remove('hw-carousel__slide--visible');
+      slides[current].setAttribute('aria-hidden', 'true');
+      current = (current + 1) % slides.length;
+      slides[current].classList.add('hw-carousel__slide--visible');
+      slides[current].setAttribute('aria-hidden', 'false');
+    }
+
+    // Show first slide
+    slides[0].classList.add('hw-carousel__slide--visible');
+    setInterval(advance, 5_000);
+  })();
+</script>
+
+<script>
+  function formatTime(days: number): string {
+    if (days === 0) return 'Actualizado hoy';
+    if (days === 1) return 'Actualizado ayer';
+    if (days < 7) return `Actualizado hace ${days} días`;
+    if (days < 30) return `Hace ${Math.floor(days / 7)} semanas`;
+    if (days < 365) return `Hace ${Math.floor(days / 30)} meses`;
+    return 'Hace más de un año';
+  }
+
+  const repoNames = [
+    'Numark-Orbit-Editor',
+    'Obsidian-MK2-Connect',
+    'Exit-Demo-Mode---Mixtrack-Pro-Platinum-FX',
+    'nanokontrol2-midi-editor',
+    'neutron-manager',
+  ];
+
+  fetch('https://api.github.com/users/nexushouser92/repos?sort=pushed&per_page=100')
+    .then((r) => r.json())
+    .then((data: Array<{ name: string; pushed_at: string; stargazers_count: number; watchers_count: number; forks_count: number }>) => {
+      // Build metrics per repo: days since last push + popularity score
+      const metricsMap = new Map<string, { days: number; popularity: number }>();
+      repoNames.forEach((name) => {
+        const repo = data.find((r) => r.name === name);
+        const days = repo
+          ? Math.floor((Date.now() - new Date(repo.pushed_at).getTime()) / 86_400_000)
+          : 9999;
+        const popularity = repo
+          ? repo.stargazers_count + repo.watchers_count + repo.forks_count
+          : 0;
+        metricsMap.set(name, { days, popularity });
+      });
+
+      // Sort by popularity descending; tie-break by most recently updated
+      const list = document.querySelector<HTMLElement>('.status-list');
+      if (!list) return;
+      const items = [...list.querySelectorAll<HTMLElement>('.status-item')];
+      items.sort((a, b) => {
+        const pA = metricsMap.get(a.dataset.repo ?? '')?.popularity ?? 0;
+        const pB = metricsMap.get(b.dataset.repo ?? '')?.popularity ?? 0;
+        if (pB !== pA) return pB - pA;
+        const dA = metricsMap.get(a.dataset.repo ?? '')?.days ?? 9999;
+        const dB = metricsMap.get(b.dataset.repo ?? '')?.days ?? 9999;
+        return dA - dB;
+      });
+
+      // Re-append sorted items — dot color = last updated, number = new rank
+      items.forEach((item, i) => {
+        const repo = item.dataset.repo ?? '';
+        const days = metricsMap.get(repo)?.days ?? 9999;
+        const dot = item.querySelector<HTMLElement>('.status-dot');
+        const time = item.querySelector<HTMLElement>('.status-time');
+        const label = item.querySelector<HTMLElement>('.status-label');
+
+        if (dot) dot.dataset.age = days < 7 ? 'fresh' : days < 60 ? 'recent' : 'old';
+        if (time) time.textContent = days < 9999 ? formatTime(days) : 'Disponible';
+        if (label) label.textContent = `${String(i + 1).padStart(2, '0')}. ${item.dataset.label ?? ''}`;
+
+        list.appendChild(item);
+      });
+    })
+    .catch(() => {
+      document.querySelectorAll<HTMLElement>('.status-dot').forEach((el) => {
+        el.dataset.age = 'recent';
+      });
+      document.querySelectorAll<HTMLElement>('.status-time').forEach((el) => {
+        el.textContent = 'Disponible';
+      });
+    });
+</script>

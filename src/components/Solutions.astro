@@ -1,42 +1,43 @@
 ---
-const tools = [
-  { name: 'Obsidian MK2 Connect', kind: 'MIDI / SYNTH', description: 'Connection and utility tools for the Arturia MiniLab MkII.', url: 'https://github.com/nexushouser92/Obsidian-MK2-Connect' },
-  { name: 'Numark Orbit Editor', kind: 'MIDI CONTROLLER', description: 'A practical editor for the Numark Orbit wireless controller.', url: 'https://github.com/nexushouser92/Numark-Orbit-Editor' },
-  { name: 'nanoKONTROL2 MIDI Editor', kind: 'MIDI CONTROLLER', description: 'Configure and adapt the Korg nanoKONTROL2 to your workflow.', url: 'https://github.com/nexushouser92/nanokontrol2-midi-editor' },
-  { name: 'Behringer Swing Editor', kind: 'SEQUENCER', description: 'Utility and editor work for Behringer Swing hardware.', url: 'https://github.com/nexushouser92/behringer-swing-editor' },
-  { name: 'Mixtrack Pro Platinum FX', kind: 'DJ HARDWARE', description: 'Exit demo mode tools for the Numark Mixtrack Pro Platinum FX.', url: 'https://github.com/nexushouser92/Exit-Demo-Mode---Mixtrack-Pro-Platinum-FX' },
-];
+import { tools } from '../data/tools.js';
+import { posts } from '../data/posts.js';
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '');
 ---
 
-<section class="tools reveal" id="tools" aria-labelledby="tools-title">
-  <div class="section-head">
-    <p class="eyebrow">01 / UTILITIES</p>
-    <h2 id="tools-title">Tools for the signal path.</h2>
-    <p>Open-source projects for making hardware more useful, approachable and connected.</p>
-  </div>
+<section class="tools reveal" id="tools">
   <div class="tools-grid">
-    {tools.map((tool, index) => (
-      <article class="tool-card">
-        <p class="tool-card__number">{String(index + 1).padStart(2, '0')}</p>
-        <p class="tool-card__kind">{tool.kind}</p>
-        <h3>{tool.name}</h3>
-        <p>{tool.description}</p>
-        <a href={tool.url} target="_blank" rel="noreferrer">View repository <span aria-hidden="true">↗</span></a>
-      </article>
-    ))}
+    {tools.map((tool) => {
+      const toolUrl = `${base}/tools/${tool.slug}`;
+      return (
+        <a class="tool-card" href={toolUrl}>
+          <p class="tool-card__kind">{tool.kind}</p>
+          <h3>{tool.name}</h3>
+          <p class="tool-card__desc">{tool.description}</p>
+        </a>
+      );
+    })}
   </div>
 </section>
 
-<section class="labs" id="labs" aria-labelledby="labs-title">
-  <div class="labs__content">
-    <p class="eyebrow">02 / OBSIDIAN LABS</p>
-    <h2 id="labs-title">Experiments beyond the instrument.</h2>
-    <p>Early explorations, Linux work and management utilities that do not yet belong to a finished product line.</p>
-  </div>
-  <div class="labs__links">
-    <a href="https://github.com/nexushouser92/neutron-manager" target="_blank" rel="noreferrer">Neutron Manager <span>↗</span></a>
-    <a href="https://github.com/nexushouser92/echo-show8-postmarketos" target="_blank" rel="noreferrer">Echo Show 8 / postmarketOS <span>↗</span></a>
-    <a href="https://github.com/nexushouser92/Exit-Demo-Linux-Mode--Mixtrack-Pro-Platinum-FX-" target="_blank" rel="noreferrer">Mixtrack Pro FX / Linux <span>↗</span></a>
+<section class="blog reveal" id="blog" aria-labelledby="blog-title">
+  <header class="blog__header">
+    <h2 id="blog-title" class="blog__heading">BLOG &amp; NOTICIAS</h2>
+  </header>
+
+  <div class="blog__grid">
+    {posts.map((post) => {
+      const postUrl = `${base}/blog/${post.slug}`;
+      return (
+        <a class="post-card" href={postUrl}>
+          <div class="post-card__meta">
+            <span class="post-card__cat">{post.category}</span>
+            <time class="post-card__date" datetime={post.date}>{post.dateFormatted}</time>
+          </div>
+          <h3 class="post-card__title">{post.title}</h3>
+          <p class="post-card__excerpt">{post.excerpt}</p>
+          <span class="post-card__cta">Leer →</span>
+        </a>
+      );
+    })}
   </div>
 </section>
-

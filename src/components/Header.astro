@@ -4,10 +4,6 @@ const logo = `${import.meta.env.BASE_URL.replace(/\/?$/, '/')}logo.png`;
 ---
 
 <header class="site-header">
-  <a class="logo" href="#top" aria-label="Obsidian Music Technology — home">
-    <img src={logo} width="1024" height="1024" alt="" />
-    <span>{brand}</span>
-  </a>
 
   <button class="menu-btn" type="button" aria-label="Open navigation" aria-controls="site-nav" aria-expanded="false">
     <span class="bars" aria-hidden="true"><span></span><span></span></span>
@@ -16,7 +12,7 @@ const logo = `${import.meta.env.BASE_URL.replace(/\/?$/, '/')}logo.png`;
 
   <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
     <a href="#tools">Tools</a>
-    <a href="#labs">Labs</a>
+    <a href="#blog">Blog</a>
     <a href="#about">About</a>
     <a class="nav-github" href="https://github.com/nexushouser92" target="_blank" rel="noreferrer">GitHub ↗</a>
   </nav>
