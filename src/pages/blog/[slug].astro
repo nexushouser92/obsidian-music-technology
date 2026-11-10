@@ -40,7 +40,7 @@ const homeUrl = `${base}/`;
       {post.heroImage && (
         <div class={`post-hero__image${post.heroImageBlend ? ' blend-multiply' : ''}`}>
           <img
-            src={post.heroImage}
+            src={`${base}${post.heroImage}`}
             alt={post.heroImageAlt ?? post.title}
           />
         </div>
