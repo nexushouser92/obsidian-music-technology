@@ -282,6 +282,13 @@ const homeUrl = `${base}/`;
   }
 
   @media (max-width: 768px) {
+    .post-content :global(img) {
+      float: none !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      margin: 1rem 0 !important;
+    }
+
     .post-hero--has-image {
       grid-template-columns: 1fr;
     }
