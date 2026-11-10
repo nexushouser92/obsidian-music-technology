@@ -71,12 +71,22 @@ const homeUrl = `${base}/`;
 </Base>
 
 <script>
-  const btn = document.querySelector<HTMLButtonElement>('.menu-btn');
-  const nav = document.querySelector<HTMLElement>('#site-nav-blog');
-  btn?.addEventListener('click', () => {
-    const open = btn.getAttribute('aria-expanded') === 'true';
-    btn.setAttribute('aria-expanded', String(!open));
-    nav?.classList.toggle('is-open', !open);
+  document.addEventListener('astro:page-load', () => {
+    const btn = document.querySelector<HTMLButtonElement>('.menu-btn');
+    const nav = document.querySelector<HTMLElement>('#site-nav-blog');
+    if (!btn || !nav) return;
+
+    btn.setAttribute('aria-expanded', 'false');
+    nav.classList.remove('is-open');
+
+    const fresh = btn.cloneNode(true) as HTMLButtonElement;
+    btn.replaceWith(fresh);
+
+    fresh.addEventListener('click', () => {
+      const open = fresh.getAttribute('aria-expanded') === 'true';
+      fresh.setAttribute('aria-expanded', String(!open));
+      nav.classList.toggle('is-open', !open);
+    });
   });
 </script>
 

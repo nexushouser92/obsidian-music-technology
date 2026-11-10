@@ -19,12 +19,22 @@ const logo = `${import.meta.env.BASE_URL.replace(/\/?$/, '/')}logo.png`;
 </header>
 
 <script>
-  const button = document.querySelector<HTMLButtonElement>('.menu-btn');
-  const navigation = document.querySelector<HTMLElement>('.site-nav');
-  button?.addEventListener('click', () => {
-    const open = button.getAttribute('aria-expanded') === 'true';
-    button.setAttribute('aria-expanded', String(!open));
-    navigation?.classList.toggle('is-open', !open);
+  document.addEventListener('astro:page-load', () => {
+    const button = document.querySelector<HTMLButtonElement>('.menu-btn');
+    const navigation = document.querySelector<HTMLElement>('.site-nav');
+    if (!button || !navigation) return;
+
+    button.setAttribute('aria-expanded', 'false');
+    navigation.classList.remove('is-open');
+
+    const fresh = button.cloneNode(true) as HTMLButtonElement;
+    button.replaceWith(fresh);
+
+    fresh.addEventListener('click', () => {
+      const open = fresh.getAttribute('aria-expanded') === 'true';
+      fresh.setAttribute('aria-expanded', String(!open));
+      navigation.classList.toggle('is-open', !open);
+    });
   });
 </script>
 
