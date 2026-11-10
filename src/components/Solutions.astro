@@ -1,0 +1,68 @@
+---
+// EDITA: título de sección y las tres tarjetas.
+const sectionTitle = 'Operational Solutions';
+
+// --- Geometría de los motivos line-art (originales) ---
+// Globo de malla
+const meridians = [12, 26, 44, 62, 80];
+// Rayos del starburst
+const rays = Array.from({ length: 36 }, (_, i) => {
+  const a = (i / 36) * Math.PI * 2;
+  return { x2: 100 + Math.cos(a) * 82, y2: 100 + Math.sin(a) * 82 };
+});
+// Esfera de puntos (anillos concéntricos)
+const dots = [];
+for (let r = 6; r <= 80; r += 7) {
+  const count = Math.max(6, Math.round(r * 0.85));
+  for (let i = 0; i < count; i++) {
+    const a = (i / count) * Math.PI * 2;
+    dots.push({ cx: 100 + Math.cos(a) * r, cy: 100 + Math.sin(a) * r });
+  }
+}
+
+const cards = ['Solution One', 'Solution Two', 'Solution Three'];
+---
+
+<section class="solutions reveal">
+  <div class="solutions__head">
+    <h2 class="solutions__title">{sectionTitle}</h2>
+    <div class="carousel-nav">
+      <button type="button" aria-label="Anterior">←</button>
+      <button type="button" aria-label="Siguiente">→</button>
+    </div>
+  </div>
+
+  <div class="solutions__grid">
+    <!-- Card 1: globo de malla -->
+    <article class="solution-card">
+      <div class="solution-card__art">
+        <svg viewBox="0 0 200 200" fill="none" stroke="#141414" stroke-width="1">
+          <circle cx="100" cy="100" r="82" />
+          {meridians.map((rx) => <ellipse cx="100" cy="100" rx={rx} ry="82" />)}
+          {meridians.map((ry) => <ellipse cx="100" cy="100" rx="82" ry={ry} />)}
+        </svg>
+      </div>
+      <h3 class="solution-card__label">{cards[0]}</h3>
+    </article>
+
+    <!-- Card 2: esfera de puntos -->
+    <article class="solution-card">
+      <div class="solution-card__art">
+        <svg viewBox="0 0 200 200" fill="#141414">
+          {dots.map((d) => <circle cx={d.cx} cy={d.cy} r="1.5" />)}
+        </svg>
+      </div>
+      <h3 class="solution-card__label">{cards[1]}</h3>
+    </article>
+
+    <!-- Card 3: starburst radial -->
+    <article class="solution-card">
+      <div class="solution-card__art">
+        <svg viewBox="0 0 200 200" stroke="#141414" stroke-width="1">
+          {rays.map((r) => <line x1="100" y1="100" x2={r.x2} y2={r.y2} />)}
+        </svg>
+      </div>
+      <h3 class="solution-card__label">{cards[2]}</h3>
+    </article>
+  </div>
+</section>

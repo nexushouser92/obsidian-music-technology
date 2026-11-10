@@ -1,0 +1,51 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'BRAND — Placeholder tagline',
+  description = 'Descripción corta de tu sitio para buscadores y redes.',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+
+    <!-- Tipografías: display geométrica + monoespaciada técnica.
+         Cámbialas si tu plantilla trae otras. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <slot />
+
+    <script>
+      // Reveal al hacer scroll
+      const io = new IntersectionObserver(
+        (entries) => {
+          for (const e of entries) {
+            if (e.isIntersecting) {
+              e.target.classList.add('is-visible');
+              io.unobserve(e.target);
+            }
+          }
+        },
+        { threshold: 0.12 }
+      );
+      document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+    </script>
+  </body>
+</html>

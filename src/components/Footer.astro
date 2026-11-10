@@ -1,0 +1,57 @@
+---
+// EDITA: columnas del sitemap, eslogan y dirección (tu marca).
+const columns = [
+  { title: 'Platform', items: [] },
+  {
+    title: 'Solutions',
+    items: [
+      { label: 'Solution One', sub: true },
+      { label: 'Solution Two', sub: true },
+      { label: 'Solution Three', sub: true },
+      { label: 'Solution Four', sub: true },
+    ],
+  },
+  {
+    title: 'About',
+    items: [
+      { label: 'Company', sub: true },
+      { label: 'Careers', sub: true },
+      { label: 'Insights', sub: false },
+      { label: 'Contact', sub: false },
+    ],
+  },
+];
+
+const tagline = 'YOUR TAGLINE HERE.';
+const address = ['BRAND HQ', '000 YOUR STREET', 'SUITE 000', 'YOUR CITY, ST 00000'];
+---
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <div class="footer-logo">
+      <svg viewBox="0 0 32 32" aria-hidden="true">
+        <path d="M4 5 L18 5 L28 15 L28 27 L14 27 L4 17 Z" />
+      </svg>
+    </div>
+
+    {columns.map((col) => (
+      <div class="footer-col">
+        <h3>{col.title}</h3>
+        <ul>
+          {col.items.map((it) => (
+            <li class={it.sub ? 'sub' : ''}><a href="#">{it.label}</a></li>
+          ))}
+        </ul>
+      </div>
+    ))}
+
+    <div class="footer-meta">
+      <span class="flag" aria-hidden="true">⌖</span>
+      <p>{tagline}</p>
+    </div>
+
+    <address class="footer-addr">
+      {address.map((line) => <div>{line}</div>)}
+    </address>
+  </div>
+</footer>
