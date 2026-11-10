@@ -54,7 +54,7 @@ const homeUrl = `${base}/`;
 
     <!-- Post Content -->
     <article class="post-content-wrap">
-      <div class="post-content" set:html={post.content} />
+      <div class="post-content" set:html={post.content.replace(/src="\/blog\//g, `src="${base}/blog/`)} />
       <aside class="post-sidebar">
         <p class="eyebrow">Categoría</p>
         <p class="sidebar-value">{post.category}</p>
