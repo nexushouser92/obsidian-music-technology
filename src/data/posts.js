@@ -37,13 +37,12 @@ export const posts = [
 <p>postmarketOS incluye <strong>Phosh</strong> como entorno por defecto (Wayland/GTK4). En este dispositivo se conserva Phosh como compositor Wayland pero se reemplazó la pantalla de inicio con <strong>echo-launcher</strong>: un launcher minimalista escrito en Python/GTK4 diseñado específicamente para el Echo Show 8. Incluye iconos arrastrables sobre fondo negro, barra de búsqueda Google integrada y cajón de aplicaciones táctil.</p>
 
 <h2>Capturas del dispositivo</h2>
-<img src="/blog/echo-show8-desktop.png" alt="Escritorio postmarketOS corriendo en el Echo Show 8" class="post-img-right" />
+<img src="/blog/echo-show8-desktop.png" alt="Escritorio postmarketOS corriendo en el Echo Show 8" style="width:100%;max-width:640px;border-radius:4px;margin:1.5rem 0;display:block;" />
 <p>El escritorio muestra el launcher personalizado corriendo sobre Phosh. La pantalla está configurada en orientación horizontal (transform 90°) a escala 1.5 para el panel DSI-1 de 800×1280.</p>
-<img src="/blog/echo-show8-terminal.png" alt="Terminal abierta en el Echo Show 8" style="width:100%;max-width:520px;border-radius:4px;margin:1.5rem 0;display:block;" />
+<img src="/blog/echo-show8-terminal.png" alt="Terminal abierta en el Echo Show 8" style="width:100%;max-width:640px;border-radius:4px;margin:1.5rem 0;display:block;" />
 <p>Terminal abierta directamente en el dispositivo vía SSH o sesión local bajo Phosh.</p>
 
 <h2><a href="https://github.com/nexushouser92/echo-show8-postmarketos" target="_blank" rel="noreferrer" style="color:inherit;text-decoration:none;border-bottom:2px solid currentColor;">Repositorio ↗</a></h2>
-<p>Scripts, notas y parches para correr postmarketOS en el Echo Show 8. Contribuciones bienvenidas en drivers de cámara y acelerómetro.</p>
     `.trim(),
   },
   {
