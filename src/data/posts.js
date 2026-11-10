@@ -54,16 +54,27 @@ export const posts = [
     excerpt:
       'Un recorrido por las opciones disponibles para editar configuraciones MIDI en Windows sin depender del software oficial del fabricante.',
     content: `
-<p>La mayoría de los controladores MIDI vienen con editores propietarios que requieren cuenta, actualizaciones forzadas o conexión a internet. Las alternativas open source existen pero están dispersas.</p>
+<p>La mayoría de los controladores MIDI vienen atados a ecosistemas propietarios que requieren cuenta, actualizaciones forzadas o conexión a internet para funcionar. Las alternativas open source existen pero están dispersas. Este artículo es un mapa de lo que hay, lo que falta, y por qué esto importa más ahora que nunca.</p>
 
-<h2>El problema</h2>
-<p>No existe una herramienta unificada. Cada controlador tiene su protocolo SysEx y sus peculiaridades. Esto es exactamente lo que intentamos resolver con los proyectos de esta colección: herramientas pequeñas y específicas que hacen una sola cosa bien.</p>
+<h2>El capitalismo informático y la obsolescencia programada</h2>
+<p>Existe un modelo de negocio consolidado en la industria del hardware musical: vender el controlador casi a precio de coste y recuperar el margen en el software de edición, las licencias de plugins y las suscripciones a nubes privadas. Native Access de Native Instruments es el ejemplo más visible — un intermediario obligatorio para usar hardware que ya compraste y pagaste. Komplete, Maschine Software, iZotope: todo pasa por su servidor. Si el servidor cierra, el hardware muere.</p>
+<p>Esto no es un accidente. Es diseño. Los ciclos de actualización de firmware intencionalmente rompen compatibilidad con versiones anteriores. Los drivers dejan de firmarse para nuevas versiones de Windows. Las APIs se deprecan. El resultado es un controlador de 400€ que en 5 años ya no funciona con tu sistema operativo, no porque el hardware haya fallado, sino porque la empresa decidió que era hora de que compraras el modelo nuevo.</p>
 
-<h2>Qué hay disponible</h2>
-<p>Las opciones open source cubren casos concretos: algunos Behringer se pueden editar via SysEx con scripts Python, el Korg nanoKONTROL 2 tiene alternativas parciales. Para los controladores Numark la situación es más limitada.</p>
+<h2>El hardware MIDI antiguo no está obsoleto</h2>
+<p>Un Korg nanoKONTROL2 de 2012, un Akai MPK Mini de 2010 o un Behringer BCR2000 de 2003 mandan exactamente el mismo protocolo MIDI que sus equivalentes actuales de gama alta. MIDI 1.0, publicado en 1983, sigue siendo el estándar dominante. El hardware no ha cambiado: lo que ha cambiado es el software que lo rodea.</p>
+<p>Con las herramientas correctas, un BCR2000 con sus 32 encoders puede controlar cualquier DAW con la misma precisión que un controlador de 600€ de 2024. Un nanoKONTROL2 mapeado en Bitwig o Ableton es funcionalmente equivalente a un Arturia BeatStep Pro para muchos flujos de trabajo. La diferencia no está en el hardware — está en el acceso al software de configuración, que el fabricante convirtió en un producto separado o directamente abandonó.</p>
+
+<h2>Qué hay disponible en open source</h2>
+<p>Las opciones cubren casos concretos pero están fragmentadas. Para Behringer, varios controladores admiten edición vía SysEx con scripts Python — la especificación está documentada en foros y wikis comunitarias. El Korg nanoKONTROL2 tiene alternativas parciales como <code>korg-kontrol-editor</code> que corre en Linux. Para los controladores Numark la situación es más limitada: pocos proyectos activos, documentación SysEx incompleta.</p>
+<p>La ausencia de una herramienta unificada no es técnica — es política. Fragmentar el soporte por modelo es la forma más efectiva de evitar que el open source se convierta en un reemplazo real del software oficial.</p>
+
+<h2>La IA como nivelador</h2>
+<p>Hasta hace dos o tres años, desarrollar un editor MIDI funcional requería semanas de ingeniería inversa del protocolo SysEx, conocimiento de frameworks de interfaz gráfica y tiempo que la mayoría de los músicos no tienen. Hoy, con modelos de lenguaje disponibles para cualquiera, el tiempo para ir de "quiero entender cómo funciona el SysEx de mi controlador" a "tengo un script funcional" se ha colapsado a horas.</p>
+<p>Esto está cambiando el ecosistema en tiempo real. Proyectos que antes habrían necesitado un equipo de tres personas durante un año ahora los termina un desarrollador solo en un fin de semana. La documentación de protocolos propietarios se reconstruye colectivamente, el código se audita más rápido, y las barreras de entrada para contribuir a un proyecto open source se han reducido de forma dramática.</p>
+<p>El open source siempre tuvo la ventaja moral. Ahora empieza a tener también la ventaja de velocidad.</p>
 
 <h2>El enfoque de Obsidian</h2>
-<p>Preferimos herramientas pequeñas y específicas a un editor genérico monolítico. Cada herramienta de esta colección tiene un único objetivo y lo cumple sin dependencias innecesarias.</p>
+<p>Preferimos herramientas pequeñas y específicas a un editor genérico monolítico. Cada herramienta de esta colección tiene un único objetivo y lo cumple sin dependencias innecesarias, sin cuenta, sin servidor remoto. El código es legible, auditable y tuyo para siempre — independientemente de lo que decida la empresa que fabricó tu controlador.</p>
     `.trim(),
   },
   {
