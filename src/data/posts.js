@@ -88,16 +88,21 @@ export const posts = [
     excerpt:
       'Cómo reactivar y usar Maschine MK2 en el software Maschine 3.',
     content: `
-<p>Native Access de Native Instruments es conocido por requerir cuenta online y ocupar recursos innecesarios para quienes solo quieren usar el hardware como controlador MIDI genérico.</p>
+<p>El Maschine MK2 fue durante años uno de los controladores de producción más completos del mercado. Hardware sólido, pads con respuesta excepcional, encoders de calidad y una integración profunda con el software Maschine que lo convirtió en el centro de trabajo de miles de productores. Nada de eso ha cambiado. Lo que cambió fue el soporte.</p>
 
-<h2>La alternativa</h2>
-<p>El Maschine MK2 se comunica por USB MIDI estándar. Con el driver correcto en Windows —o sin ningún driver extra en Linux— el controlador aparece como dispositivo MIDI genérico y puede mapearse en cualquier DAW.</p>
+<h2>La obsolescencia no llegó por el hardware</h2>
+<p>Con la llegada de Maschine 3, Native Instruments rediseñó la arquitectura de su software. El resultado fue una experiencia mejorada para los modelos más recientes — pero los controladores de la generación MK1, MK2 y Mikro quedaron fuera de la compatibilidad oficial. No porque sus componentes hayan fallado. No porque el hardware sea incapaz. Sino porque el ciclo de producto avanzó y las versiones anteriores no entraron en el nuevo esquema de soporte.</p>
+<p>Es un patrón conocido en la industria: el software evoluciona, los requisitos cambian, y controladores perfectamente funcionales quedan técnicamente huérfanos. No es malicia — es la lógica de un ecosistema que debe sostener su propio desarrollo.</p>
 
-<h2>Limitaciones</h2>
-<p>No tendrás acceso a las funciones Komplete si no usas el software de NI. Pero si tu objetivo es mapear el controlador en tu DAW o herramienta preferida, esto es completamente suficiente.</p>
+<h2>El parche que cambió todo</h2>
+<p>El proyecto Obsidian MK2 Connect surgió exactamente de ahí: de la necesidad de cerrar esa brecha. El resultado es un parche completamente funcional que permite operar el Maschine MK2 dentro de Maschine 3 sin restricciones, sin bugs conocidos y sin comprometer ninguna función del flujo de trabajo habitual. Los pads responden, los encoders mapean correctamente, el transporte funciona, las pantallas muestran la información esperada. No hay workarounds ni parches parciales — el controlador opera como si fuera un dispositivo soportado oficialmente.</p>
+
+<h2>Un antes y un después</h2>
+<p>Lo que este proyecto representa va más allá de una solución técnica puntual. Demuestra que el hardware de la generación MK — considerado obsoleto por el mercado — tiene años de vida útil por delante. Que la decisión de qué es "obsoleto" no la toma el silicio, sino el software que lo rodea. Y que esa decisión puede revertirse.</p>
+<p>Desde que se publicó el primer release, varios desarrolladores han tomado el proyecto como referencia para trabajar en soluciones similares para el MK1 y el Mikro. El código es abierto, la documentación está disponible y la comunidad alrededor de las Maschine de primera y segunda generación está más activa que en años.</p>
 
 <h2>Obsidian MK2 Connect</h2>
-<p>El proyecto Obsidian MK2 Connect automatiza este proceso y añade utilidades de configuración para simplificar la integración sin pasar por el ecosistema oficial de Native Instruments.</p>
+<p>El proyecto automatiza el proceso de configuración y añade utilidades que simplifican la integración con Maschine 3. Sin cuenta. Sin intermediarios. Sin depender de que un servidor externo esté disponible. Solo el controlador y el software haciendo lo que siempre debieron hacer juntos.</p>
     `.trim(),
   },
   {
