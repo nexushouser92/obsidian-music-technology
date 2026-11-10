@@ -12,25 +12,21 @@ export function getStaticPaths() {
 
 const { tool } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/?$/, '');
-const logoUrl = `${base}/logo.png`;
 const homeUrl = `${base}/`;
 const downloadUrl = `https://github.com/nexushouser92/${tool.repo}/archive/refs/heads/main.zip`;
 const githubUrl = `https://github.com/nexushouser92/${tool.repo}`;
 ---
 
 <Base title={`${tool.name} — OBSIDIAN`} description={tool.description}>
-  <!-- Header -->
   <header class="tool-site-header">
     <nav class="site-nav" aria-label="Primary navigation">
       <a href={`${homeUrl}#tools`}>Tools</a>
-      <a href={`${homeUrl}#labs`}>Labs</a>
-      <a href={`${homeUrl}#about`}>About</a>
-      <a class="nav-github" href="https://github.com/nexushouser92" target="_blank" rel="noreferrer">GitHub ↗</a>
+      <a href={`${homeUrl}#blog`}>Blog</a>
+      <a class="nav-github" href="https://github.com/nexushouser92" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
     </nav>
   </header>
 
   <main class="tool-page">
-    <!-- Hero -->
     <section class="tool-hero">
       <div class="tool-hero__content">
         <p class="eyebrow">{tool.kind}</p>
@@ -54,12 +50,11 @@ const githubUrl = `https://github.com/nexushouser92/${tool.repo}`;
         </dl>
         <div class="tool-hero__actions">
           <a class="btn-download" href={downloadUrl}>↓ Descargar ZIP</a>
-          <a class="btn-github" href={githubUrl} target="_blank" rel="noreferrer">Ver en GitHub ↗</a>
+          <a class="btn-github" href={githubUrl} target="_blank" rel="noopener noreferrer">Ver en GitHub ↗</a>
         </div>
       </aside>
     </section>
 
-    <!-- Features + Requirements -->
     <section class="tool-features">
       <div class="tool-features__inner">
         <h2>Características</h2>
@@ -75,7 +70,6 @@ const githubUrl = `https://github.com/nexushouser92/${tool.repo}`;
       </div>
     </section>
 
-    <!-- Back link -->
     <div class="tool-back">
       <a href={`${homeUrl}#tools`}>← Volver a todas las herramientas</a>
     </div>

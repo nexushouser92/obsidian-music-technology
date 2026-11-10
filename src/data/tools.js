@@ -81,7 +81,6 @@ export const tools = [
     longDescription:
       'A lightweight tool that automatically disables the light demo mode on the Numark Mixtrack Pro FX and Mixtrack Platinum FX controllers. Available as a standalone Windows executable and as a Linux script — no installation needed, just run and you\'re ready to map.',
     repo: 'Exit-Demo-Mode---Mixtrack-Pro-Platinum-FX',
-    repoLinux: 'Exit-Demo-Linux-Mode--Mixtrack-Pro-Platinum-FX-',
     platform: 'Windows / Linux',
     license: 'MIT',
     features: [
