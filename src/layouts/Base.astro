@@ -19,6 +19,10 @@ const { title = 'OBSIDIAN Technology', description = 'Independent open-source ut
     <div id="google_translate_element" style="display:none" aria-hidden="true"></div>
     <slot />
     <script>
+      /* ── Always start at top on load/reload ── */
+      if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+      window.scrollTo(0, 0);
+
       /* ── Reveal / scroll animation ── */
       function initReveal() {
         const observer = new IntersectionObserver((entries) => entries.forEach((entry) => {
