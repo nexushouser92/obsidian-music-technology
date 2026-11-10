@@ -1,11 +1,8 @@
 import { defineConfig } from 'astro/config';
+import sitemap from '@astrojs/sitemap';
 
-// ─────────────────────────────────────────────────────────────
-//  GitHub Pages — repo de proyecto nexushouser92/obsidian-music-technology
-//  En dev (npm run dev) sirve en la raíz; en el build de GitHub
-//  Actions usa la subruta /obsidian-music-technology.
-// ─────────────────────────────────────────────────────────────
 export default defineConfig({
   site: 'https://nexushouser92.github.io/obsidian-technology',
   base: process.env.GITHUB_ACTIONS ? '/obsidian-technology' : '',
+  integrations: [sitemap()],
 });
