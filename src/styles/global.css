@@ -64,8 +64,9 @@ body { top: 0 !important; }
 .tool-card h3 { margin:.75rem 0; font-size:clamp(2.4rem,3.8vw,4rem); font-weight:400; line-height:1.0; letter-spacing:-.04em; }
 .tool-card > p:not([class]) { margin:0; color:#333; font:700 .72rem/1.5 'Bayon',sans-serif; letter-spacing:.05em; text-transform:uppercase; }
 @media (max-width:960px) { .tools-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }.tool-card,.tool-card:first-child,.tool-card:nth-child(odd) { min-height:21rem; } }
-@media (max-width:620px) { .tools-grid { grid-template-columns:1fr; margin-inline:-1.25rem; }.tool-card,.tool-card:first-child,.tool-card:nth-child(odd) { min-height:18.2rem; padding:1.5rem; } }
+@media (max-width:620px) { .tools-grid { grid-template-columns:1fr; margin-inline:0; }.tool-card,.tool-card:first-child,.tool-card:nth-child(odd) { min-height:18.2rem; padding:1.5rem; } }
 main { margin:0; padding:0; }
+.tools { padding:0; background:transparent; }
 .tools-grid { margin-inline:0; }
 
 /* Tool card — description */
