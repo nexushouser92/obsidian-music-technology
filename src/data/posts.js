@@ -9,20 +9,41 @@ export const posts = [
     heroImageAlt: 'Amazon Echo Show 8 ejecutando postmarketOS',
     excerpt: 'Port de postmarketOS al Amazon Echo Show 8 (2nd Gen): hardware compatible, WiFi monitor mode, acceso USB serial y capturas reales del dispositivo.',
     content: `
-<p>El Amazon Echo Show 8 de segunda generación es un dispositivo con potencial para reutilizar como pantalla Linux embebida. Este post recopila el estado actual del proyecto y los próximos pasos.</p>
+<p>El Amazon Echo Show 8 de segunda generación (codename <code>athena</code>, SoC MediaTek MT8183) ya arranca <strong>postmarketOS edge</strong> de forma completa sobre Alpine Linux con kernel 6.18.56-techo5-athena. Este post resume lo que se ha logrado, el estado real del hardware y cómo está configurado el entorno.</p>
 
-<h2>Estado actual</h2>
-<p>El arranque básico ya funciona a través de serial USB. El WiFi puede entrar en modo monitor con los drivers correctos, aunque la estabilidad varía según el kernel que se use. Los scripts incluidos en el repositorio automatizan la configuración inicial.</p>
+<h2>Lo que se ha logrado</h2>
+<p>El dispositivo expone un gadget USB compuesto con shell raíz a 115200 baudios (puerto COM9, sin drivers adicionales en Windows) y una interfaz de red RNDIS en <code>172.16.42.1</code> para SSH sin contraseña. El chip WiFi MT7921 corre <code>wlan0</code> en modo administrado y <code>mon0</code> en modo monitor al mismo tiempo, con persistencia entre reinicios vía OpenRC. Los scripts del repositorio automatizan todo el proceso desde Windows con <code>pyserial</code>.</p>
 
-<h2>Lo que falta</h2>
-<ul>
-  <li>Soporte completo de touchscreen</li>
-  <li>Aceleración gráfica por hardware</li>
-  <li>Audio interno funcional</li>
-</ul>
+<h2>Compatibilidad de hardware</h2>
+<table>
+  <thead><tr><th>Componente</th><th>Estado</th></tr></thead>
+  <tbody>
+    <tr><td>Pantalla LCD + retroiluminación</td><td>✅ Funciona</td></tr>
+    <tr><td>Touchscreen (FT5x06)</td><td>✅ Funciona</td></tr>
+    <tr><td>WiFi modo administrado</td><td>✅ Funciona</td></tr>
+    <tr><td>WiFi modo monitor</td><td>✅ Funciona</td></tr>
+    <tr><td>Bluetooth</td><td>✅ Funciona</td></tr>
+    <tr><td>Reproducción de audio</td><td>✅ Funciona</td></tr>
+    <tr><td>Sensor de luz ambiental (TCS3400)</td><td>✅ Funciona</td></tr>
+    <tr><td>USB gadget (serial + red)</td><td>✅ Funciona</td></tr>
+    <tr><td>Micrófono</td><td>⚠️ Presente, sin pruebas completas</td></tr>
+    <tr><td>Cámara trasera / frontal</td><td>⚠️ Driver ISP cargado, sin probar</td></tr>
+    <tr><td>Acelerómetro / Giroscopio</td><td>❌ No detectado</td></tr>
+    <tr><td>Reporte de batería</td><td>❓ Sin entradas en sysfs</td></tr>
+  </tbody>
+</table>
 
-<h2>Próximos pasos</h2>
-<p>El objetivo a corto plazo es conseguir un entorno gráfico mínimo funcional. Las contribuciones al repositorio son bienvenidas, especialmente en la parte de drivers de display.</p>
+<h2>El entorno gráfico</h2>
+<p>postmarketOS incluye <strong>Phosh</strong> como entorno por defecto (Wayland/GTK4). En este dispositivo se conserva Phosh como compositor Wayland pero se reemplazó la pantalla de inicio con <strong>echo-launcher</strong>: un launcher minimalista escrito en Python/GTK4 diseñado específicamente para el Echo Show 8. Incluye iconos arrastrables sobre fondo negro, barra de búsqueda Google integrada y cajón de aplicaciones táctil.</p>
+
+<h2>Capturas del dispositivo</h2>
+<img src="/blog/echo-show8-desktop.png" alt="Escritorio postmarketOS corriendo en el Echo Show 8" class="post-img-right" />
+<p>El escritorio muestra el launcher personalizado corriendo sobre Phosh. La pantalla está configurada en orientación horizontal (transform 90°) a escala 1.5 para el panel DSI-1 de 800×1280.</p>
+<img src="/blog/echo-show8-terminal.png" alt="Terminal abierta en el Echo Show 8" style="width:100%;max-width:520px;border-radius:4px;margin:1.5rem 0;display:block;" />
+<p>Terminal abierta directamente en el dispositivo vía SSH o sesión local bajo Phosh.</p>
+
+<h2>Repositorio</h2>
+<p>Scripts, notas y parches disponibles en <a href="https://github.com/nexushouser92/echo-show8-postmarketos" target="_blank" rel="noreferrer">github.com/nexushouser92/echo-show8-postmarketos</a>. Las contribuciones son bienvenidas, especialmente en drivers de cámara y acelerómetro.</p>
     `.trim(),
   },
   {
