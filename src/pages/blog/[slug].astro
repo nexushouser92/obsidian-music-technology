@@ -18,11 +18,16 @@ const homeUrl = `${base}/`;
 
 <Base title={`${post.title} — OBSIDIAN`} description={post.excerpt}>
   <header class="tool-site-header">
-    <nav class="site-nav" aria-label="Primary navigation">
+    <button class="menu-btn" type="button" aria-label="Open navigation" aria-controls="site-nav-blog" aria-expanded="false">
+      <span class="bars" aria-hidden="true"><span></span><span></span></span>
+      MENU
+    </button>
+    <nav class="site-nav" id="site-nav-blog" aria-label="Primary navigation">
+      <a href={homeUrl}>Home</a>
       <a href={`${homeUrl}#tools`}>Tools</a>
       <a href={`${homeUrl}#blog`}>Blog</a>
-      <a href={`${homeUrl}#about`}>About</a>
       <a class="nav-github" href="https://github.com/nexushouser92" target="_blank" rel="noreferrer">GitHub ↗</a>
+
     </nav>
   </header>
 
@@ -65,6 +70,16 @@ const homeUrl = `${base}/`;
   <Footer />
 </Base>
 
+<script>
+  const btn = document.querySelector<HTMLButtonElement>('.menu-btn');
+  const nav = document.querySelector<HTMLElement>('#site-nav-blog');
+  btn?.addEventListener('click', () => {
+    const open = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', String(!open));
+    nav?.classList.toggle('is-open', !open);
+  });
+</script>
+
 <style>
   .tool-site-header {
     position: sticky;
@@ -76,6 +91,8 @@ const homeUrl = `${base}/`;
     padding: 1.1rem clamp(1.25rem, 4vw, 4rem);
     background: #14131c;
     border-bottom: 1px solid rgba(242, 240, 248, 0.1);
+    /* needed so the mobile dropdown is positioned relative to this header */
+    overflow: visible;
   }
 
   /* Hero */
