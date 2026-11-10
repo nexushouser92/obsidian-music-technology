@@ -47,12 +47,12 @@ export const posts = [
   },
   {
     slug: 'editores-midi-open-source-windows',
-    title: 'Editores MIDI open source para Windows: qué existe y qué falta',
+    title: 'El capitalismo informático y la obsolescencia programada',
     category: 'HERRAMIENTAS',
     date: '2026-09-14',
     dateFormatted: '14 Sep 2026',
     excerpt:
-      'Un recorrido por las opciones disponibles para editar configuraciones MIDI en Windows sin depender del software oficial del fabricante.',
+      'Cómo la industria del hardware musical programa la muerte de sus productos, y por qué el open source — acelerado por la IA — está cambiando las reglas.',
     content: `
 <p>La mayoría de los controladores MIDI vienen atados a ecosistemas propietarios que requieren cuenta, actualizaciones forzadas o conexión a internet para funcionar. Las alternativas open source existen pero están dispersas. Este artículo es un mapa de lo que hay, lo que falta, y por qué esto importa más ahora que nunca.</p>
 
