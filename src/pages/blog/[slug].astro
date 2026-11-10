@@ -287,7 +287,15 @@ const homeUrl = `${base}/`;
     }
 
     .post-hero__image {
-      min-height: 240px;
+      transform: none;
+      justify-content: center;
+      min-height: auto;
+    }
+
+    .post-hero__image img {
+      max-height: 280px;
+      width: auto;
+      max-width: 100%;
     }
 
     .post-hero--has-image .post-hero__inner {
