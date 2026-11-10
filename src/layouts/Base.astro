@@ -36,13 +36,14 @@ const { title = 'OBSIDIAN Technology', description = 'Independent open-source ut
       });
       document.addEventListener('astro:page-load', initReveal);
 
-      /* ── Auto-translate based on browser language ── */
+      /* ── Auto-translate: Spanish stays Spanish, everything else → English ── */
       (function () {
-        const userLang = ((navigator.language || (navigator as any).userLanguage) ?? 'es')
+        const userLang = ((navigator.language || (navigator as any).userLanguage) ?? 'en')
           .split('-')[0].toLowerCase();
 
         if (userLang !== 'es') {
-          const val = `/es/${userLang}`;
+          // Non-Spanish browsers get English (not their own language)
+          const val = '/es/en';
           document.cookie = `googtrans=${val}; path=/; SameSite=Lax`;
           document.cookie = `googtrans=${val}; domain=${location.hostname}; path=/; SameSite=Lax`;
         }
@@ -59,14 +60,6 @@ const { title = 'OBSIDIAN Technology', description = 'Independent open-source ut
         s.async = true;
         document.head.appendChild(s);
       })();
-
-      /* Re-apply translation after each View Transition */
-      document.addEventListener('astro:page-load', () => {
-        const combo = document.querySelector('.goog-te-combo') as HTMLSelectElement | null;
-        if (combo && combo.value && combo.value !== 'es') {
-          combo.dispatchEvent(new Event('change'));
-        }
-      });
     </script>
   </body>
 </html>
