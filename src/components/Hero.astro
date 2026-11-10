@@ -1,37 +1,22 @@
 ---
-// EDITA: línea de apoyo, descripción lateral y los
-// ítems de "System Status".
-const lead = 'Tu propuesta de valor en una línea, partida en varias para dar ritmo.';
-const sideCopy = 'Un párrafo breve que explique a quién sirves y qué resuelves.';
-
-const status = [
-  'MODULE A', 'MODULE B', 'MODULE C', 'MODULE D', 'MODULE E',
-  'MODULE F', 'MODULE G', 'MODULE H', 'MODULE I', 'MODULE J',
-];
-
-// Decoración binaria (solo estética)
-const rnd = (n) => Array.from({ length: n }, () => (Math.random() > 0.5 ? '1' : '0')).join('');
-const binaryLines = Array.from({ length: 4 }, () => `${rnd(8)}  ${rnd(8)}  ${rnd(8)}`);
+const status = ['MIDI CONTROL', 'SYNTH UTILITIES', 'DJ HARDWARE', 'OPEN SOURCE', 'MADE FOR MUSIC'];
+const binaryLines = ['01001111  01000010  01010011', '01001001  01000100  01001001', '01000001  01001110  00101110'];
 ---
 
-<section class="hero" id="top">
+<section class="hero" id="top" aria-labelledby="hero-title">
   <div class="hero__main">
-    <p class="hero__lead">{lead}</p>
+    <p class="eyebrow">MUSIC TECHNOLOGY / INDEPENDENT UTILITIES</p>
+    <h1 class="hero__title" id="hero-title">OBSIDIAN<br /><span>MUSIC TECHNOLOGY</span></h1>
+    <p class="hero__lead">Focused utilities for the instruments you already make music with.</p>
+    <a class="hero__link" href="#tools">Explore the tools <span aria-hidden="true">↓</span></a>
   </div>
-
   <aside class="hero__side">
-    <div class="hero__side-top">
-      <p>{sideCopy}</p>
-    </div>
-
+    <div class="hero__side-top"><p>Editors, connection tools and practical experiments for MIDI controllers, synthesizers and DJ gear.</p></div>
     <div class="hero__side-bottom">
       <h2>System Status</h2>
-      <ol class="status-list">
-        {status.map((item, i) => (
-          <li>{String(i + 1).padStart(2, '0')}. {item}</li>
-        ))}
-      </ol>
+      <ol class="status-list">{status.map((item, i) => <li>{String(i + 1).padStart(2, '0')}. {item}</li>)}</ol>
       <pre class="binary">{binaryLines.join('\n')}</pre>
     </div>
   </aside>
 </section>
+
