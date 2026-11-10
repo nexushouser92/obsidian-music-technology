@@ -39,6 +39,16 @@ const { title = 'OBSIDIAN Technology', description = 'Independent open-source ut
       });
       document.addEventListener('astro:page-load', initReveal);
 
+      /* ── Content protection ── */
+      document.addEventListener('contextmenu', e => e.preventDefault());
+      document.addEventListener('dragstart', e => { if ((e.target as HTMLElement).tagName === 'IMG') e.preventDefault(); });
+      document.addEventListener('keydown', e => {
+        const k = e.key.toLowerCase();
+        if (e.ctrlKey && ['c','a','s','u','p','i'].includes(k)) e.preventDefault();
+        if (['F12','PrintScreen'].includes(e.key)) e.preventDefault();
+      });
+      (window as any).print = () => {};
+
       /* ── Auto-translate: Spanish stays Spanish, everything else → English ── */
       (function () {
         const userLang = ((navigator.language || (navigator as any).userLanguage) ?? 'en')

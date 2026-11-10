@@ -27,6 +27,16 @@
 @media (max-width:620px) { .menu-btn { display:inline-flex; }.site-nav { display:flex; flex-direction:column; align-items:flex-start; position:absolute; top:4.7rem; right:1rem; left:1rem; padding:0 1.1rem; background:#252335; border:1px solid var(--line); max-height:0; overflow:hidden; opacity:0; pointer-events:none; transition:max-height .35s cubic-bezier(.4,0,.2,1), opacity .25s ease, padding .35s ease; }.site-nav.is-open { max-height:300px; opacity:1; pointer-events:auto; padding:1.1rem; }.hero__main { padding-bottom:8rem; }.hero__side { grid-template-columns:1fr; }.hero__side-top { padding:0; min-height:240px; }.hero__side-bottom { padding:2rem 1.25rem; }.section-head { grid-template-columns:1fr; margin-bottom:2.75rem; }.section-head > p:last-child { grid-column:auto; }.tools { padding:3rem 1.25rem; }.tools-grid { grid-template-columns:1fr; }.tool-card { min-height:13rem; }.labs { padding:4rem 1.25rem; }.site-footer { grid-template-columns:1fr; }.copyright { grid-column:auto; }.reveal { opacity:1; transform:none; transition:none; } }
 @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; }.reveal { opacity:1; transform:none; transition:none; } }
 
+/* ── Content protection ── */
+body { -webkit-user-select:none; -moz-user-select:none; -ms-user-select:none; user-select:none; }
+img { -webkit-user-drag:none; user-drag:none; -webkit-touch-callout:none; pointer-events:none; }
+a img, button img { pointer-events:auto; }
+/* image overlay — prevents right-click save and drag-extraction */
+.img-wrap { position:relative; display:inline-block; }
+.img-wrap::after { content:''; position:absolute; inset:0; z-index:1; pointer-events:all; }
+/* print protection */
+@media print { * { display:none !important; } }
+
 /* ── Google Translate — hide toolbar ── */
 .goog-te-banner-frame,
 .goog-te-balloon-frame,
