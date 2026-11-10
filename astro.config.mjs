@@ -6,6 +6,6 @@ import { defineConfig } from 'astro/config';
 //  Actions usa la subruta /obsidian-music-technology.
 // ─────────────────────────────────────────────────────────────
 export default defineConfig({
-  site: 'https://nexushouser92.github.io/obsidian-music-technology',
-  base: process.env.GITHUB_ACTIONS ? '/obsidian-music-technology' : '',
+  site: 'https://nexushouser92.github.io/obsidian-technology',
+  base: process.env.GITHUB_ACTIONS ? '/obsidian-technology' : '',
 });
