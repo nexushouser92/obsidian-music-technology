@@ -79,14 +79,14 @@ export const posts = [
   },
   {
     slug: 'maschine-mk2-sin-native-access',
-    title: 'Maschine MK2: control sin instalar Native Access',
+    title: 'Revivir Maschine MK2 de la obsolescencia programada',
     category: 'MIDI / SYNTH',
     date: '2026-08-20',
     dateFormatted: '20 Ago 2026',
     heroImage: '/blog/maschine-mk2.webp',
     heroImageAlt: 'Native Instruments Maschine MK2 con pads iluminados en rosa',
     excerpt:
-      'Cómo conectar y usar el Maschine MK2 en Linux y Windows sin instalar Native Access ni el software oficial de NI.',
+      'Cómo reactivar y usar Maschine MK2 en el software Maschine 3.',
     content: `
 <p>Native Access de Native Instruments es conocido por requerir cuenta online y ocupar recursos innecesarios para quienes solo quieren usar el hardware como controlador MIDI genérico.</p>
 
